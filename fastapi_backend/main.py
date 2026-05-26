@@ -3,23 +3,12 @@ from pydantic import BaseModel
 import pymysql,time
 import os
 app = FastAPI()
-
-# DB connection function
-# def get_connection():
-#     return pymysql.connect(
-#         # host="localhost",
-#         host = "mysql-db",  # ← change this if using Docker
-#         user="root",
-#         password="root",  # ← change this!
-#         database="feedback_db",
-#         cursorclass=pymysql.cursors.DictCursor
-#     )
-
 def get_connection():
     for i in range(10):  # retry 10 times
         try:
             conn = pymysql.connect(
-                host=os.getenv("DB_HOST", "mysql-db"),
+                # host=os.getenv("DB_HOST", "mysql-db"),  # for Docker, use the service name defined in the docker-compose YAML
+                host=os.getenv("DB_HOST", "mysql-service"),  # for kubernetes, use the service name defined in the deployment YAML
                 # host=os.getenv("DB_HOST", "localhost"),
                 user=os.getenv("DB_USER", "root"),
                 password=os.getenv("DB_PASSWORD", "root"),

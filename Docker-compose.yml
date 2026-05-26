@@ -16,6 +16,7 @@ services:
 
   fastapi-backend:
     build: ./fastapi_backend
+    image: saiteja4751/fastapi-backend:latest
     container_name: fastapi-container
     restart: always
     depends_on:
@@ -30,6 +31,7 @@ services:
 
   flask-frontend:
     build: ./flask_frontend
+    image: saiteja4751/flask-frontend:latest
     container_name: flask-container
     restart: always
     depends_on:

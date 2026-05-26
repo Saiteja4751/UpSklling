@@ -20,3 +20,13 @@ if you wanted to run the application through normally like it as local host.
   you need to update the host as localhost in fastapi_bakend/main.py file
       host=os.getenv("DB_HOST", "localhost"),
 
+
+
+kuberberbetes setup:
+ 1.you should start the minikube cluster 
+ 2.the run the kubernetes deploymenets of frontend,backend and mysql also
+ check the pods deployment,
+ kubectl get all
+ -kubectl apply -f k8s/backend
+ -kubectl apply -f k8s/frontend
+ -kubectl apply -f k8s/mysql

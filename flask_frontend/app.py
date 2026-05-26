@@ -4,7 +4,8 @@ import requests
 app = Flask(__name__)
 # API_URL = "http://127.0.0.1:8000/feedback/"
 # API_URL = "http://fastapi-container:8000/feedback/"
-API_URL = "http://fastapi-backend:8000/feedback/"
+# API_URL = "http://fastapi-backend:8000/feedback/" # ← change this if using Docker-compose 
+API_URL = "http://backend-service:8000/feedback/" #for kubernetes, use the service name defined in the deployment YAML
 # API_URL = "http://localhost:8000/feedback/"
 
 @app.route("/", methods=["GET", "POST"])
