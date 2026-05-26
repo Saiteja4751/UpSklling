@@ -30,3 +30,9 @@ kuberberbetes setup:
  -kubectl apply -f k8s/backend
  -kubectl apply -f k8s/frontend
  -kubectl apply -f k8s/mysql
+
+
+
+ imp: you should change the type as node port
+ kubectl edit svc backend-service
+ 
