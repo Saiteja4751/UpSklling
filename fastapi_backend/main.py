@@ -18,8 +18,8 @@ def get_connection():
             print("✅ Connected to MySQL")
             return conn
         except Exception as e:
-            print(f"❌ DB not ready, retrying... {i}")
-            time.sleep(3)
+            print(f"❌ DB not ready, retrying... {e}")
+            time.sleep(5)
 
     raise Exception("Database connection failed after retries")
 
