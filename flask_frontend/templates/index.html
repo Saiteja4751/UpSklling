@@ -2,101 +2,192 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>User Feedback Data</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Portal</title>
+
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f2f2f2;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: 'Poppins', sans-serif;
         }
 
-        form {
-            background: linear-gradient(135deg, #74ebd5, #acb6e5);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            width: 360px;
+        body{
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background: linear-gradient(-45deg,#1e3c72,#2a5298,#6dd5ed,#2193b0);
+            background-size:400% 400%;
+            animation:bgAnimation 12s ease infinite;
+            overflow:hidden;
         }
 
-        h2 {
-            text-align: center;
-            color: #fff;
-            margin-bottom: 25px;
+        @keyframes bgAnimation{
+            0%{background-position:0% 50%;}
+            50%{background-position:100% 50%;}
+            100%{background-position:0% 50%;}
         }
 
-        label {
-            color: #fff;
-            font-weight: bold;
+        .container{
+            width:420px;
+            padding:35px;
+            border-radius:25px;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(15px);
+            border:1px solid rgba(255,255,255,0.2);
+            box-shadow:0 8px 32px rgba(0,0,0,0.25);
+            animation:fadeIn 1s ease;
         }
 
-        input[type="text"],
-        input[type="email"],
-        textarea {
-            width: 100%;
-            padding: 10px;
-            margin-top: 6px;
-            margin-bottom: 16px;
-            border: none;
-            border-radius: 8px;
-            outline: none;
+        @keyframes fadeIn{
+            from{
+                opacity:0;
+                transform:translateY(30px);
+            }
+            to{
+                opacity:1;
+                transform:translateY(0);
+            }
+        }
+
+        h2{
+            text-align:center;
+            color:white;
+            margin-bottom:25px;
+            font-size:32px;
+        }
+
+        .subtitle{
+            text-align:center;
+            color:#eaeaea;
+            margin-bottom:25px;
+            font-size:14px;
+        }
+
+        label{
+            color:white;
+            font-weight:600;
+            margin-bottom:8px;
+            display:block;
+        }
+
+        input,
+        textarea{
+            width:100%;
+            padding:14px;
+            border:none;
+            outline:none;
+            border-radius:12px;
+            margin-bottom:20px;
+            background:rgba(255,255,255,0.2);
+            color:white;
+            font-size:15px;
+            transition:0.3s;
+        }
+
+        input::placeholder,
+        textarea::placeholder{
+            color:#eee;
         }
 
         input:focus,
-        textarea:focus {
-            box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+        textarea:focus{
+            background:rgba(255,255,255,0.3);
+            transform:scale(1.02);
         }
 
-        button {
-            width: 100%;
-            padding: 12px;
-            background-color: #ffffff;
-            color: #333;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: transform 0.3s, background-color 0.3s;
+        .btn{
+            width:100%;
+            padding:14px;
+            border:none;
+            border-radius:12px;
+            background:white;
+            color:#1e3c72;
+            font-size:16px;
+            font-weight:bold;
+            cursor:pointer;
+            transition:0.3s;
+            margin-top:10px;
         }
 
-        button:hover {
-            background-color: #eeeeee;
-            transform: scale(1.05);
+        .btn:hover{
+            transform:translateY(-3px);
+            background:#f1f1f1;
+            box-shadow:0 10px 20px rgba(0,0,0,0.2);
         }
+
+        .view-btn{
+            margin-top:15px;
+            background:transparent;
+            border:2px solid white;
+            color:white;
+        }
+
+        .view-btn:hover{
+            background:white;
+            color:#1e3c72;
+        }
+
+        .footer{
+            text-align:center;
+            margin-top:20px;
+            color:white;
+            font-size:13px;
+        }
+
     </style>
+
     <script>
-        function showPopup(event) {
-            event.preventDefault(); // prevent form from refreshing the page
-            alert("Thank you for your feedback!");
-            event.target.submit(); // now submit the form
+        function showPopup(event){
+            event.preventDefault();
+            alert("✅ Thank you! Feedback submitted successfully.");
+            event.target.submit();
         }
     </script>
+
 </head>
+
 <body>
+
+<div class="container">
+
+    <h2>Feedback Portal</h2>
+
+    <p class="subtitle">
+        Share your valuable feedback with us 🚀
+    </p>
+
     <form method="POST" onsubmit="showPopup(event)">
-        <h2>Feedback Form data</h2>
-        <label>Name:</label>
-        <input type="text" name="name" required>
 
-        <label>Email:</label>
-        <input type="email" name="email" required>
+        <label>Name</label>
+        <input type="text" name="name" placeholder="Enter your name" required>
 
-        <label>Message:</label>
-        <textarea name="message" rows="4" required></textarea>
+        <label>Email</label>
+        <input type="email" name="email" placeholder="Enter your email" required>
 
-        <button type="submit">Submit</button>
+        <label>Message</label>
+        <textarea name="message" rows="4" placeholder="Write your feedback..." required></textarea>
+
+        <button class="btn" type="submit">
+            Submit Feedback
+        </button>
+
     </form>
-    <br>
-	<!-- <h1>added sai data</h1> -->
-	<!-- <h2>vault-project</h2>  -->
-    <br>
-<form action="/view-feedback" method="GET">
-    <button type="submit">View Feedback</button>
-</form>
+
+    <form action="/view-feedback" method="GET">
+        <button class="btn view-btn" type="submit">
+            View Submitted Feedback
+        </button>
+    </form>
+
+    <div class="footer">
+        Designed with ❤️ using Flask + FastAPI + Kubernetes
+    </div>
+
+</div>
 
 </body>
 </html>
