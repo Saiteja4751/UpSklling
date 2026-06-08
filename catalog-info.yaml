@@ -3,8 +3,9 @@ kind: Component
 
 metadata:
   name: sample-node-app
+  description: Sample Node.js application
 
 spec:
   type: service
-  owner: dev-team
-  lifecycle: production
+  lifecycle: development
+  owner: _account_all_users
