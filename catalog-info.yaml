@@ -1,10 +1,19 @@
-apiVersion: backstage.io/v1alpha1
-kind: Component
-
-metadata:
-  name: sample-node-app-test-01
-
+apiVersion: harness.io/v1
+kind: component
+name: first-component
+identifier: firstcomponent
+type: service
+owner: group:account/_account_all_users
+projectIdentifier: TEST
+orgIdentifier: default
 spec:
-  type: service
   lifecycle: development
-  owner: _account_all_users
+  sourceCode:
+    provider: Github
+    repoName: UpSklling
+    connectorRef: account.newconnector
+    branch: main
+    monoRepo: false
+metadata:
+  tags: []
+  description: ""
