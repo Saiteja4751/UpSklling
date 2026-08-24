@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: frontend-container
-        image: saiteja4751/frontend:v11
+        image: saiteja4751/frontend:v99
         imagePullPolicy: Always
 
         ports:
