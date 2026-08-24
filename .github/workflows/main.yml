@@ -1,0 +1,69 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      # -------------------------
+      # Backend
+      # -------------------------
+
+      - name: Build Backend Image
+        run: |
+          docker build \
+            -t saiteja4751/backend:${{ github.sha }} \
+            ./fastapi_backend
+
+      - name: Push Backend Image
+        run: |
+          docker push saiteja4751/backend:${{ github.sha }}
+
+      # -------------------------
+      # Frontend
+      # -------------------------
+
+      - name: Build Frontend Image
+        run: |
+          docker build \
+            -t saiteja4751/frontend:${{ github.sha }} \
+            ./flask_frontend
+
+      - name: Push Frontend Image
+        run: |
+          docker push saiteja4751/frontend:${{ github.sha }}
+
+      # -------------------------
+      # Update Helm values
+      # -------------------------
+
+      - name: Update Helm image tags
+        run: |
+          sed -i "s/tag: v[0-9]*/tag: ${{ github.sha }}/" flask-fastapi-chart/values.yaml
+
+      - name: Commit Helm changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+          git add flask-fastapi-chart/values.yaml
+
+          git commit -m "Update application images to ${{ github.sha }}" || echo "No changes"
+
+          git push
