@@ -1,11 +1,11 @@
 backend:
   image: saiteja4751/backend:v4
-  replicas: 1
+  replicas: 4
   servicePort: 8000
 
 frontend:
   image: saiteja4751/frontend:v5
-  replicas: 1
+  replicas: 4
   servicePort: 5000
   nodePort: 30007
 
