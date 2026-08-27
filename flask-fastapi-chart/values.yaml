@@ -5,7 +5,7 @@ backend:
 
 frontend:
   image: saiteja4751/frontend:v9
-  replicas: 4
+  replicas: 5
   servicePort: 5000
   nodePort: 30007
 
