@@ -11,6 +11,6 @@ frontend:
 
 mysql:
   image: mysql:8.0
-  rootPassword: root
+  rootPassword: rootpass ##root password for mysql
   database: feedback_db
   servicePort: 3306
