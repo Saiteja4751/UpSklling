@@ -9,7 +9,7 @@ spec:
 
   selector:
     matchLabels:
-      app: frontend
+      app: frontend-lables ##frontend
 
   template:
     metadata:
