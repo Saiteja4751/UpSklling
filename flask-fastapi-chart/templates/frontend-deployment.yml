@@ -14,7 +14,7 @@ spec:
   template:
     metadata:
       labels:
-        app: frontend-container
+        app: frontend
 
     spec:
       containers:
